@@ -1,4 +1,5 @@
-export class UpdateExpenseDTO { value: number;
+export class UpdateExpenseDTO { 
+  value?: number;
   periodInit?: Date;
   periodFinal?: Date;
   local?: string;
