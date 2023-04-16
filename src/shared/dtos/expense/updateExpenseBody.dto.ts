@@ -5,17 +5,17 @@ export class UpdateExpenseBodyDTO {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  value: string;
+  value: number;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  periodInit: string;
+  periodInit: Date;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  periodFinal: string;
+  periodFinal: Date;
 
   @ApiProperty()
   @IsString()

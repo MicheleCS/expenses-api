@@ -1,10 +1,27 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { getDatabaseConfigConnection } from './config/env/connection';
+import { ConfigModule } from '@nestjs/config';
+import envConfig from './config/env';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './modules/user/user.module';
+import { UserRoleModule } from './modules/userRole/userRole.module';
+import { ExpenseModule } from './modules/expenses/expense.module';
+import { CategoryModule } from './modules/category/category.module';
 
+const databaseOptions = {
+  ...getDatabaseConfigConnection(),
+};
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      load: [envConfig],
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot(databaseOptions),
+    UserModule,
+    UserRoleModule,
+    ExpenseModule,
+    CategoryModule
+  ],
 })
 export class AppModule {}
