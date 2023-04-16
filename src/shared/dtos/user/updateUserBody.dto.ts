@@ -25,7 +25,7 @@ export class UpdateUserBodyDTO {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  birthDate: string;
+  birthDate: Date;
 
   @ApiProperty()
   @IsString()
