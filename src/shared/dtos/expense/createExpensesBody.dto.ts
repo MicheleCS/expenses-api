@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator/types/decorator/decorators";
+import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateExpenseBodyDTO {
   @ApiProperty()

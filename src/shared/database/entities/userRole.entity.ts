@@ -11,7 +11,7 @@ export class UserRole {
   @ApiProperty()
   @IsNotEmpty()
   @Column({nullable: false})
-  company: string;
+  name: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

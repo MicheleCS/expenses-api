@@ -12,7 +12,6 @@ export class UserRoleController {
   constructor(private readonly userRoleService: UserRoleService){}
 
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @UsePipes(

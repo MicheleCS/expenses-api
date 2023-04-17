@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsOptional, IsString } from "class-validator/types/decorator/decorators";
+import { IsOptional, IsString } from "class-validator";
 
 export class UpdateCategoryBodyDTO {
   @ApiProperty()

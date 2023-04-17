@@ -50,7 +50,7 @@ import { usernameOrPasswordInvalid } from "../constants";
   const token = await this.jwtService.sign(payload);
   return {
     accessToken: token,
-    userRole: userRole.company,
+    userRole: userRole.name,
     userId: userFinded.id
   };
   }
