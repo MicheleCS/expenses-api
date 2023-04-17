@@ -9,11 +9,6 @@ export class UserRole {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  @Column({nullable: false})
-  name: string;
-
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 

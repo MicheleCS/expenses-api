@@ -7,8 +7,6 @@ export class CreateUserDTO {
 
   public cpfcnpj: string;
 
-  public birthDate: Date;
-
   public phoneNumber: string;
 
   public gender?: string;

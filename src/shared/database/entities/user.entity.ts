@@ -36,11 +36,6 @@ export class User {
   @ApiProperty()
   @IsNotEmpty()
   @Column({nullable: false})
-  bithDate: Date;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @Column({nullable: false})
   phoneNumber: string;
 
   @ApiProperty()
