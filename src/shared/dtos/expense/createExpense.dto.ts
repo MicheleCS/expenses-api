@@ -10,6 +10,4 @@ export class CreateExpenseDTO {
   public description: string;
 
   public status: string;
-
-  public paymant: string;
 }

@@ -3,6 +3,5 @@ export class CreateCategoryDTO {
 
   public type: string;
 
-  public hirdParty: string;
-
+  public companyParty: string;
 }

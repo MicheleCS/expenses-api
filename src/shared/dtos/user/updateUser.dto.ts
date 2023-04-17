@@ -9,6 +9,4 @@ export class UpdateUserDTO {
   company?: string;
   office?: string;
   address?: string;
-  city?: string;
-  state?: string;
 }

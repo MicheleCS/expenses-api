@@ -15,5 +15,5 @@ export class UpdateCategoryBodyDTO {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  thirdParty: string;
+  companyParty: string;
 }

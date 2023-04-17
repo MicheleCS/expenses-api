@@ -18,8 +18,4 @@ export class CreateUserDTO {
   public office: string;
 
   public address: string;
-
-  public city: string;
-
-  public state: string;
 }

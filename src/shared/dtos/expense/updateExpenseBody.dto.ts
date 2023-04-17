@@ -1,19 +1,19 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsOptional, IsString } from "class-validator/types/decorator/decorators";
+import { IsDate, IsNumber, IsOptional, IsString } from "class-validator/types/decorator/decorators";
 
 export class UpdateExpenseBodyDTO {
   @ApiProperty()
-  @IsString()
+  @IsNumber()
   @IsOptional()
   value: number;
 
   @ApiProperty()
-  @IsString()
+  @IsDate()
   @IsOptional()
   periodInit: Date;
 
   @ApiProperty()
-  @IsString()
+  @IsDate()
   @IsOptional()
   periodFinal: Date;
 
@@ -26,9 +26,4 @@ export class UpdateExpenseBodyDTO {
   @IsString()
   @IsOptional()
   description: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  paymant: string;
 }

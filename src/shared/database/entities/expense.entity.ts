@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./user.entity";
+import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 @Entity('expenses')
 export class Expense {
@@ -8,39 +9,40 @@ export class Expense {
   public id: string;
 
   @ApiProperty()
+  @IsNotEmpty()
   @Column({nullable: false})
   value: number;
 
   @ApiProperty()
+  @IsNotEmpty()
   @Column({nullable: false})
   periodInit: Date;
 
   @ApiProperty()
+  @IsNotEmpty()
   @Column({nullable: false})
   periodFinal: Date;
 
   @ApiProperty()
+  @IsNotEmpty()
   @Column({nullable: false})
   local: string;
 
   @ApiProperty()
+  @IsNotEmpty()
   @Column({nullable: false})
   description: string;
 
   @Column()
   status: string;
 
-  @ApiProperty()
-  @Column()
-  paymant: string;
-
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   public createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   public updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ name: 'deleted_at' })
   public deletedAt: Date;
 
   @ManyToOne(() => User, (user) => user.expense, {

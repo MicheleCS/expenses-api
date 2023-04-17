@@ -1,21 +1,21 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsOptional, IsString } from "class-validator/types/decorator/decorators";
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator/types/decorator/decorators";
 
 export class CreateExpenseBodyDTO {
   @ApiProperty()
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  value: string;
+  value: number;
 
   @ApiProperty()
-  @IsString()
+  @IsDate()
   @IsNotEmpty()
-  periodInit: string;
+  periodInit: Date;
 
   @ApiProperty()
-  @IsString()
+  @IsDate()
   @IsNotEmpty()
-  periodFinal: string;
+  periodFinal: Date;
 
   @ApiProperty()
   @IsString()
@@ -26,9 +26,4 @@ export class CreateExpenseBodyDTO {
   @IsString()
   @IsNotEmpty()
   description: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  paymant: string;
 }
