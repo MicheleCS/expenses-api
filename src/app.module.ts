@@ -7,6 +7,7 @@ import { UserModule } from './modules/user/user.module';
 import { UserRoleModule } from './modules/userRole/userRole.module';
 import { ExpenseModule } from './modules/expenses/expense.module';
 import { CategoryModule } from './modules/category/category.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 const databaseOptions = {
   ...getDatabaseConfigConnection(),
@@ -21,7 +22,8 @@ const databaseOptions = {
     UserModule,
     UserRoleModule,
     ExpenseModule,
-    CategoryModule
+    CategoryModule,
+    AuthModule
   ],
 })
 export class AppModule {}
