@@ -2,7 +2,7 @@ export class UpdateUserDTO {
   name?: string;
   email?: string;
   password?: string;
-  cpfCnpj?: string;
+  cpfcnpj?: string;
   birthDate?: Date;
   phoneNumber?: string;
   gender?: string;

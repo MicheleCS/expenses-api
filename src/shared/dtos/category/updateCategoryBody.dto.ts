@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsOptional, IsString } from "class-validator";
+import { IsOptional, IsString, Max } from "class-validator";
 
 export class UpdateCategoryBodyDTO {
   @ApiProperty()
@@ -9,11 +9,7 @@ export class UpdateCategoryBodyDTO {
 
   @ApiProperty()
   @IsString()
+  @Max(191)
   @IsOptional()
-  type: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  companyParty: string;
+  description: string;
 }

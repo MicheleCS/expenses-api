@@ -5,7 +5,7 @@ export class CreateUserDTO {
 
   public password: string;
 
-  public cpfCnpj: string;
+  public cpfcnpj: string;
 
   public birthDate: Date;
 

@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, Max } from "class-validator";
 
 
 export class CreateCategoryBodyDTO {
@@ -10,11 +10,7 @@ export class CreateCategoryBodyDTO {
 
   @ApiProperty()
   @IsString()
+  @Max(191)
   @IsNotEmpty()
-  type: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  companyParty: string;
+  description: string;
 }

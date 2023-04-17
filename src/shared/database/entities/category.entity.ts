@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Expense } from "./expense.entity";
 
 @Entity('categorys')
 export class Category {
@@ -13,14 +14,9 @@ export class Category {
   name: string;
 
   @ApiProperty()
-  @IsNotEmpty()
-  @Column({nullable: false})
-  type: string;
-
-  @ApiProperty()
   @IsOptional()
   @Column({nullable: false})
-  companyParty?: string
+  description: string;
 
   @CreateDateColumn({ name: 'created_at' })
   public createdAt: Date;
@@ -30,4 +26,10 @@ export class Category {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   public deletedAt: Date;
+
+  @ManyToOne(() => Expense, (expense)=> expense.category, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'expense_id' })
+  expense?: Expense;
 }

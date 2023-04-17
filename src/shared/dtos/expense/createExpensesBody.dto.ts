@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString, Max } from "class-validator";
 
 export class CreateExpenseBodyDTO {
   @ApiProperty()
@@ -24,6 +24,7 @@ export class CreateExpenseBodyDTO {
 
   @ApiProperty()
   @IsString()
+  @Max(191)
   @IsNotEmpty()
   description: string;
 }
