@@ -1,4 +1,4 @@
 export class CreateUserRoleDTO {
 
-  public company: string;
+  public name: string;
 }

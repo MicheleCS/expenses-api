@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsNumber, IsOptional, IsString } from "class-validator";
-export class UpdateExpenseBodyDTO {
+
+export class GetAllExpenseBodyDTO {
   @ApiProperty()
   @IsNumber()
   @IsOptional()

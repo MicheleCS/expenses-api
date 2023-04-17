@@ -9,5 +9,4 @@ export class CreateExpenseDTO {
 
   public description: string;
 
-  public status: string;
 }

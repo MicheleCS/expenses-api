@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Category } from "src/shared/database/entities/category.entity";
+import { CreateCategoryBodyDTO } from "src/shared/dtos/category/createCategoryBody.dto";
 import { UpdateCategoryBodyDTO } from "src/shared/dtos/category/updateCategoryBody.dto";
 import { CategoryRepository } from "src/shared/repositories/category.repository";
 import { EntityNotFoundError } from "typeorm";
@@ -12,6 +13,10 @@ export class CategoryService {
     private repository: CategoryRepository,
 
   ){}
+
+  async create(dto: CreateCategoryBodyDTO) {
+    return this.repository.createCategory(dto);
+  }
 
   async findOne(id: string) {
     return await this.repository.getOneCategory(id);

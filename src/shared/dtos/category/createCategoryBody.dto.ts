@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsOptional, IsString } from "class-validator/types/decorator/decorators";
+import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+
 
 export class CreateCategoryBodyDTO {
   @ApiProperty()
@@ -15,5 +16,5 @@ export class CreateCategoryBodyDTO {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  comapanyParty: string;
+  companyParty: string;
 }
