@@ -6,10 +6,5 @@ export class CreateUserRoleBodyDTO {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  name: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
   company: string;
 }

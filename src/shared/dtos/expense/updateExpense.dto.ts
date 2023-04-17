@@ -5,5 +5,4 @@ export class UpdateExpenseDTO {
   local?: string;
   description?: string;
   status?: string;
-  paymant?: string;
 }

@@ -1,64 +1,59 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsOptional, IsString } from "class-validator/types/decorator/decorators";
+import { IsDate, IsNotEmpty, IsOptional, IsString } from "class-validator/types/decorator/decorators";
 
 export class UpdateUserBodyDTO {
   @ApiProperty()
   @IsString()
-  @IsOptional()
-  name: string;
+  @IsNotEmpty()
+  id?: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  email: string;
+  name?: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  password: string;
+  email?: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  cpfCnpj: string;
+  password?: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  birthDate: Date;
+  cpfCnpj?: string;
+
+  @ApiProperty()
+  @IsDate()
+  @IsOptional()
+  birthDate?: Date;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  phoneNumber: string;
+  phoneNumber?: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  gender: string;
+  gender?: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  company: string;
+  company?: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  office: string;
+  office?: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
-  adress: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  city: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  state: string;
+  address?: string;
 }

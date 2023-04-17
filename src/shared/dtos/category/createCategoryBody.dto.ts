@@ -15,5 +15,5 @@ export class CreateCategoryBodyDTO {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  thirdParty: string;
+  comapanyParty: string;
 }

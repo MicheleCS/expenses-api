@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./user.entity";
+import { IsNotEmpty, IsString } from "class-validator";
 
 @Entity('user_roles')
 export class UserRole {
@@ -8,25 +9,22 @@ export class UserRole {
   id: string;
 
   @ApiProperty()
-  @Column()
-  name: string;
+  @IsNotEmpty()
+  @Column({nullable: false})
+  company: string;
 
-  @ApiProperty()
-  @Column()
-  company: string;  
-
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
 
   @ManyToOne(() => User, (user) => user.userRole, {
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   })
-  @JoinColumn({ name: 'user_id'})
+  @JoinColumn({ name: 'user_id' })
   public user?: User;
 }

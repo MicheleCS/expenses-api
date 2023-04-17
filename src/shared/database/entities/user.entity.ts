@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { UserRole } from "./userRole.entity";
 import { Expense } from "./expense.entity";
 import { Exclude } from "class-transformer";
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 @Entity('users')
 @Unique(['email'])
@@ -14,92 +14,76 @@ export class User {
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
   @Column({nullable: false})
   name: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
   @Column({nullable: false})
   email: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
   @Exclude()
   @Column({nullable: false})
   password: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
   @Column('uuid')
   role_id: string;
 
   @ApiProperty({nullable: false})
   @IsNotEmpty()
-  @IsString()
   @Column()
   cpfCnpj: string;
 
   @ApiProperty()
   @IsNotEmpty()
+  @IsDate()
   @Column({nullable: false})
   bithDate: Date;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
   @Column({nullable: false})
   phoneNumber: string;
 
   @ApiProperty()
-  @IsString()
   @IsOptional()
   @Column()
   gender?: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
   @Column({nullable: false})
   company: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
   @Column({nullable: false})
   office: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
   @Column({nullable: false})
   address: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
-  @Column({nullable: false})
-  city: string;
+  @Column('uuid')
+  userRoleId: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
-  @Column({nullable: false})
-  state: string;
-
-  @Column()
+  @Column({ default: 'pending' })
   status: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   public createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   public updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ name: 'deleted_at' })
   public deletedAt: Date;
 
   @OneToMany(() => UserRole, (userRole) => userRole.user)
@@ -107,5 +91,4 @@ export class User {
 
   @OneToMany(() => Expense, (expense) => expense.user)
   public expense?: Expense[];
-
 }
