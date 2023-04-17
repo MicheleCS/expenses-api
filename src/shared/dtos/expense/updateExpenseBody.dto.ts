@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsDate, IsNumber, IsOptional, IsString, Max } from "class-validator";
 export class UpdateExpenseBodyDTO {
   @ApiProperty()
   @IsNumber()
@@ -23,6 +23,7 @@ export class UpdateExpenseBodyDTO {
 
   @ApiProperty()
   @IsString()
+  @Max(191)
   @IsOptional()
   description?: string;
 }

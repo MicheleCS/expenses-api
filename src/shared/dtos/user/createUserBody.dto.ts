@@ -20,7 +20,7 @@ export class CreateUserBodyDTO {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  cpfCnpj: string;
+  cpfcnpj: string;
 
   @ApiProperty()
   @IsDate()

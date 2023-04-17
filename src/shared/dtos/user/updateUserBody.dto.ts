@@ -25,7 +25,7 @@ export class UpdateUserBodyDTO {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  cpfCnpj?: string;
+  cpfcnpj?: string;
 
   @ApiProperty()
   @IsDate()

@@ -7,7 +7,7 @@ import { IsDate, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 @Entity('users')
 @Unique(['email'])
-@Unique(['cpfCnpj'])
+@Unique(['cpfcnpj'])
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -36,7 +36,7 @@ export class User {
   @ApiProperty({nullable: false})
   @IsNotEmpty()
   @Column()
-  cpfCnpj: string;
+  cpfcnpj: string;
 
   @ApiProperty()
   @IsNotEmpty()
