@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { UserRole } from "./userRole.entity";
 import { Expense } from "./expense.entity";
 import { Exclude } from "class-transformer";
-import { IsDate, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import {IsNotEmpty, IsOptional } from "class-validator";
 
 @Entity('users')
 @Unique(['email'])
@@ -30,17 +30,11 @@ export class User {
 
   @ApiProperty()
   @IsNotEmpty()
-  @Column('uuid')
-  role_id: string;
-
-  @ApiProperty({nullable: false})
-  @IsNotEmpty()
-  @Column()
+  @Column({nullable: false})
   cpfcnpj: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsDate()
   @Column({nullable: false})
   bithDate: Date;
 
@@ -68,11 +62,6 @@ export class User {
   @IsNotEmpty()
   @Column({nullable: false})
   address: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @Column('uuid')
-  userRoleId: string;
 
   @Column({ default: 'pending' })
   status: string;

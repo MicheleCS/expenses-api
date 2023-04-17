@@ -1,16 +1,16 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import { UserRoleService } from "./service";
-import { JwtAuthGuard } from "src/modules/auth/guards/jwt.auth.guards";
-import { CreateUserRoleBodyDTO } from "src/shared/dtos/userRole/createUserRoleBody.dto";
+import { RoleService } from "./service";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
+import { CreateRoleBodyDTO } from "src/shared/dtos/role/createRoleBodyDTO";
 import { instanceToInstance } from "class-transformer";
+import { JwtAuthGuard } from "src/modules/auth/guards/jwt.auth.guards";
 import { Roles } from "src/modules/auth/guards/userRoles.decorator";
 import { roles } from "src/shared/constants/roles";
 
-@ApiTags('user-roles')
-@Controller('user-roles')
-export class UserRoleController {
-  constructor(private readonly userRoleService: UserRoleService){}
+@ApiTags('roles')
+@Controller('roles')
+export class RoleController {
+  constructor(private readonly RoleService: RoleService){}
 
   @ApiBearerAuth()
   @Post()
@@ -20,10 +20,10 @@ export class UserRoleController {
       transform: true,
     }),
   )
-  async create(@Body() dto: CreateUserRoleBodyDTO) {
-    const userRole = await this.userRoleService.create(dto);
-    console.log(userRole)
-    return instanceToInstance(userRole);
+  async create(@Body() dto: CreateRoleBodyDTO) {
+    const Role = await this.RoleService.create(dto);
+    console.log(Role)
+    return instanceToInstance(Role);
   }
 
   @ApiBearerAuth()
@@ -37,7 +37,7 @@ export class UserRoleController {
     }),
   )
   async findOne(@Param('id') id:string) {
-    return await this.userRoleService.findOne(id);
+    return await this.RoleService.findOne(id);
   }
 
   @ApiBearerAuth()
@@ -50,6 +50,6 @@ export class UserRoleController {
     }),
   )
   async remove(@Param('id')id: string){
-    return await this.userRoleService.remove(id);
+    return await this.RoleService.remove(id);
   }  
 }
