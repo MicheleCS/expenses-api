@@ -28,11 +28,6 @@ export class UpdateUserBodyDTO {
   cpfcnpj?: string;
 
   @ApiProperty()
-  @IsDate()
-  @IsOptional()
-  birthDate?: Date;
-
-  @ApiProperty()
   @IsString()
   @IsOptional()
   phoneNumber?: string;

@@ -14,8 +14,8 @@ export class ExpenseRepository extends Repository<Expense> {
     }
 
   async createExpense(dto: CreateExpenseDTO): Promise<Expense> {
-    const expense = this.create(dto);
-    return await this.save(expense)
+    const expense = await this.create(dto);
+    return this.save(expense)
   }
 
   async getAllExpense(dto: GetAllExpenseBodyDTO): Promise<Expense[]> {

@@ -1,19 +1,20 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNotEmpty, IsNumber, IsString, Max } from "class-validator";
+import { IsDateString, IsNotEmpty, IsNumber, IsString, Max, MaxLength, Min } from "class-validator";
 
 export class CreateExpenseBodyDTO {
   @ApiProperty()
   @IsNumber()
+  @Min(0)
   @IsNotEmpty()
   value: number;
 
   @ApiProperty()
-  @IsDate()
+  @IsDateString()
   @IsNotEmpty()
   periodInit: Date;
 
   @ApiProperty()
-  @IsDate()
+  @IsDateString()
   @IsNotEmpty()
   periodFinal: Date;
 
@@ -24,7 +25,7 @@ export class CreateExpenseBodyDTO {
 
   @ApiProperty()
   @IsString()
-  @Max(191)
+  @MaxLength(191)
   @IsNotEmpty()
   description: string;
 }

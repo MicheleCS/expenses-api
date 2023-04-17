@@ -34,9 +34,6 @@ export class Expense {
   @Column({nullable: false})
   description: string;
 
-  @Column()
-  status: string;
-
   @CreateDateColumn({ name: 'created_at' })
   public createdAt: Date;
 

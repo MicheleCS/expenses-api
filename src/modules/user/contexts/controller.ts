@@ -1,9 +1,13 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
 import { UserService } from "./service";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { UpdateUserBodyDTO } from "src/shared/dtos/user/updateUserBody.dto";
 import { CreateUserBodyDTO } from "src/shared/dtos/user/createUserBody.dto";
 import { instanceToInstance } from "class-transformer";
+import { JwtAuthGuard } from "src/modules/auth/guards/jwt.auth.guards";
+import { RolesGuard } from "src/modules/auth/guards/roles.guards";
+import { roles } from "src/shared/constants/roles";
+import { Roles } from "src/modules/auth/guards/userRoles.decorator";
 
 @ApiTags('users')
 @Controller('users')
@@ -21,10 +25,25 @@ export class UserController {
     const user = await this.userService.create(dto);
     return instanceToInstance(user);
   }
+
+  @Get()
+  @Roles(roles.ADMIN, roles.BASIC)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  )
+  async findAll() {
+    return this.userService.findAll();
+  }
   
   @ApiBearerAuth()
   @Get(':id')
-  @HttpCode(200)
+  @Roles( roles.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HttpCode(HttpStatus.OK)
   @UsePipes(
     new ValidationPipe({
       transform: true,
@@ -36,7 +55,9 @@ export class UserController {
 
   @ApiBearerAuth()
   @Patch()
-  @HttpCode(204)
+  @Roles(roles.BASIC, roles.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(
     new ValidationPipe({
       transform: true,
@@ -46,9 +67,10 @@ export class UserController {
     await this.userService.update(userId, updateUserBodyDTO);
   }
 
-  @ApiBearerAuth()
   @Delete(':id')
-  @HttpCode(204)
+  @Roles(roles.BASIC, roles.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(
     new ValidationPipe({
       transform: true,

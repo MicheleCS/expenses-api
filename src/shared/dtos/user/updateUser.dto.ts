@@ -3,7 +3,6 @@ export class UpdateUserDTO {
   email?: string;
   password?: string;
   cpfcnpj?: string;
-  birthDate?: Date;
   phoneNumber?: string;
   gender?: string;
   company?: string;

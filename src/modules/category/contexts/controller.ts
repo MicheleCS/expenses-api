@@ -7,6 +7,7 @@ import { CreateCategoryBodyDTO } from "src/shared/dtos/category/createCategoryBo
 import { instanceToInstance } from "class-transformer";
 import { Roles } from "src/modules/auth/guards/userRoles.decorator";
 import { roles } from "src/shared/constants/roles";
+import { RolesGuard } from "src/modules/auth/guards/roles.guards";
 @ApiTags('categorys')
 @Controller('categorys')
 export class CategoryController {
@@ -30,7 +31,7 @@ export class CategoryController {
   @ApiBearerAuth()
   @Get(':id')
   @Roles(roles.ADMIN, roles.BASIC)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @HttpCode(HttpStatus.OK)
   @UsePipes(
     new ValidationPipe({
@@ -44,7 +45,7 @@ export class CategoryController {
   @ApiBearerAuth()
   @Patch()
   @Roles(roles.ADMIN)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(
     new ValidationPipe({
@@ -58,7 +59,7 @@ export class CategoryController {
   @ApiBearerAuth()
   @Delete(':id')
   @Roles(roles.ADMIN)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(
     new ValidationPipe({

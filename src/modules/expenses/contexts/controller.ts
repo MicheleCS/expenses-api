@@ -6,18 +6,18 @@ import { Roles } from "src/modules/auth/guards/userRoles.decorator";
 import { JwtAuthGuard } from "src/modules/auth/guards/jwt.auth.guards";
 import { CreateExpenseBodyDTO } from "src/shared/dtos/expense/createExpensesBody.dto";
 import { instanceToInstance } from "class-transformer";
-import { Expense } from "src/shared/database/entities/expense.entity";
 import { roles } from "src/shared/constants/roles";
+import { RolesGuard } from "src/modules/auth/guards/roles.guards";
 
-@ApiTags('expense')
-@Controller('expense')
+@ApiTags('expenses')
+@Controller('expenses')
 export class ExpenseController {
   constructor(private readonly expenseService: ExpenseService){}
 
   @ApiBearerAuth()
   @Post()
   @Roles(roles.ADMIN, roles.BASIC)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @HttpCode(HttpStatus.CREATED)
   @UsePipes(
     new ValidationPipe({
@@ -26,13 +26,13 @@ export class ExpenseController {
   )
   async create(@Body() dto: CreateExpenseBodyDTO) {
     const expense = await this.expenseService.create(dto);
-    return instanceToInstance(Expense);
+    return instanceToInstance(expense);
   }
 
   @ApiBearerAuth()
   @Get(':id')
   @Roles(roles.BASIC, roles.ADMIN)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @HttpCode(HttpStatus.OK)
   @UsePipes(
     new ValidationPipe({
@@ -46,7 +46,7 @@ export class ExpenseController {
   @ApiBearerAuth()
   @Patch()
   @Roles(roles.ADMIN, roles.BASIC)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(
     new ValidationPipe({
@@ -60,7 +60,7 @@ export class ExpenseController {
   @ApiBearerAuth()
   @Delete(':id')
   @Roles(roles.ADMIN)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(
     new ValidationPipe({

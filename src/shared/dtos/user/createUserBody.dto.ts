@@ -23,11 +23,6 @@ export class CreateUserBodyDTO {
   cpfcnpj: string;
 
   @ApiProperty()
-  @IsDateString()
-  @IsNotEmpty()
-  birthDate: Date;
-
-  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   phoneNumber: string;
