@@ -2,22 +2,21 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { ExpenseService } from "./service";
 import { UpdateExpenseBodyDTO } from "src/shared/dtos/expense/updateExpenseBody.dto";
-import { UserRole } from "src/modules/auth/guards/userRoles.decorator";
-import { userRole } from "src/shared/constants/userRole";
+import { Roles } from "src/modules/auth/guards/userRoles.decorator";
 import { JwtAuthGuard } from "src/modules/auth/guards/jwt.auth.guards";
 import { CreateExpenseBodyDTO } from "src/shared/dtos/expense/createExpensesBody.dto";
 import { instanceToInstance } from "class-transformer";
 import { Expense } from "src/shared/database/entities/expense.entity";
+import { roles } from "src/shared/constants/roles";
 
 @ApiTags('expense')
 @Controller('expense')
 export class ExpenseController {
   constructor(private readonly expenseService: ExpenseService){}
 
-
   @ApiBearerAuth()
   @Post()
-  @UserRole(userRole.ADMIN, userRole.BASIC)
+  @Roles(roles.ADMIN, roles.BASIC)
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.CREATED)
   @UsePipes(
@@ -32,7 +31,7 @@ export class ExpenseController {
 
   @ApiBearerAuth()
   @Get(':id')
-  @UserRole(userRole.BASIC, userRole.ADMIN)
+  @Roles(roles.BASIC, roles.ADMIN)
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
   @UsePipes(
@@ -46,7 +45,7 @@ export class ExpenseController {
 
   @ApiBearerAuth()
   @Patch()
-  @UserRole(userRole.ADMIN, userRole.BASIC)
+  @Roles(roles.ADMIN, roles.BASIC)
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(
@@ -60,7 +59,7 @@ export class ExpenseController {
 
   @ApiBearerAuth()
   @Delete(':id')
-  @UserRole(userRole.ADMIN)
+  @Roles(roles.ADMIN)
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(

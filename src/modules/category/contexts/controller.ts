@@ -5,9 +5,8 @@ import { UpdateCategoryBodyDTO } from "src/shared/dtos/category/updateCategoryBo
 import { JwtAuthGuard } from "src/modules/auth/guards/jwt.auth.guards";
 import { CreateCategoryBodyDTO } from "src/shared/dtos/category/createCategoryBody.dto";
 import { instanceToInstance } from "class-transformer";
-import { UserRole } from "src/modules/auth/guards/userRoles.decorator";
-import { userRole } from "src/shared/constants/userRole";
-
+import { Roles } from "src/modules/auth/guards/userRoles.decorator";
+import { roles } from "src/shared/constants/roles";
 @ApiTags('categorys')
 @Controller('categorys')
 export class CategoryController {
@@ -15,7 +14,7 @@ export class CategoryController {
 
   @ApiBearerAuth()
   @Post()
-  @UserRole(userRole.ADMIN)
+  @Roles(roles.ADMIN)
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.CREATED)
   @UsePipes(
@@ -30,7 +29,7 @@ export class CategoryController {
   
   @ApiBearerAuth()
   @Get(':id')
-  @UserRole( userRole.ADMIN, userRole.BASIC)
+  @Roles(roles.ADMIN, roles.BASIC)
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
   @UsePipes(
@@ -44,7 +43,7 @@ export class CategoryController {
 
   @ApiBearerAuth()
   @Patch()
-  @UserRole(userRole.ADMIN)
+  @Roles(roles.ADMIN)
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(
@@ -58,7 +57,7 @@ export class CategoryController {
 
   @ApiBearerAuth()
   @Delete(':id')
-  @UserRole(userRole.ADMIN)
+  @Roles(roles.ADMIN)
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(

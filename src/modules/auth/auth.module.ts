@@ -11,6 +11,7 @@ import { LocalStrategy } from "./strategies/local.strategy";
 import { JwtStrategy } from "./strategies/jwt.strategy";
 import { BcryptProvider } from "src/shared/providers/encrypt/bcrypt.provider";
 import { Module } from "@nestjs/common";
+import { JwtAuthGuard } from "./guards/jwt.auth.guards";
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { Module } from "@nestjs/common";
   providers: [
     AuthService, 
     LocalStrategy, 
-    JwtStrategy, 
+    JwtStrategy,
+    JwtAuthGuard,
     { provide: 'ENCRYPT_PROVIDER', useClass: BcryptProvider }],
   exports: [AuthService],
   

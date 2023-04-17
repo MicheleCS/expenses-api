@@ -8,6 +8,7 @@ import { UserRoleModule } from './modules/userRole/userRole.module';
 import { ExpenseModule } from './modules/expenses/expense.module';
 import { CategoryModule } from './modules/category/category.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { RoleModule } from './modules/role/role.module';
 
 const databaseOptions = {
   ...getDatabaseConfigConnection(),
@@ -20,6 +21,7 @@ const databaseOptions = {
     }),
     TypeOrmModule.forRoot(databaseOptions),
     UserModule,
+    RoleModule,
     UserRoleModule,
     ExpenseModule,
     CategoryModule,
