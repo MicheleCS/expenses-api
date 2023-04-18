@@ -29,6 +29,19 @@ export class ExpenseController {
     return instanceToInstance(expense);
   }
 
+  @Get()
+  @Roles(roles.BASIC, roles.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  )
+  async findAll() {
+    return this.expenseService.findAll()
+  }
+
   @ApiBearerAuth()
   @Get(':id')
   @Roles(roles.BASIC, roles.ADMIN)

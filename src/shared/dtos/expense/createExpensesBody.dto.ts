@@ -28,4 +28,14 @@ export class CreateExpenseBodyDTO {
   @MaxLength(191)
   @IsNotEmpty()
   description: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  categoryId: string;
 }
