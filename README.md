@@ -79,3 +79,65 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## AUTOR
+
+NESTJS
+
+
+O Nest é uma estrutura para a criação de API, eficientes e escalaveis. Utilizando o JavaScript e construido com o suporte TypeScript.
+
+COMANDOS UTILIZADOS
+
+$ npm i -g @nestjs/cli
+$ nest new project-name
+
+COMANDOS PARA RODAR O APP
+
+$ npm run start
+$ npm run start:dev
+
+*Implementação do banco e dados PostgreSQL
+Postgres é um sistema de gerenciamento de banco de dados objeto-relacional. Sua função principal é armazenar dados de forma segura, para depois recupera-las conforme for solicitado por outros aplicativos de softaware. 
+
+.ENV
+
+Para fazer a conexão com a imagem do banco de dados no docker e que o email seja encaminhando ao cadastrar uma despesa o .ENV deve ser configurado conforme o .env-exemple
+
+COMANDOS UTILIZADOS
+
+$ npm install --save typeorm pg
+
+*Iniciando uma instância do Postgres no Docker 
+Docker é um conjunto de produtos de plataforma que usa virtualização de sistema operacional para entregar pacotes chamados conteineres.
+
+COMANDO UTIIZADO (Makefile)
+	docker-compose -f docker-compose.yml up -d
+
+*Autenticação
+O recurso de autenticação é pensando como uma miniestrutura em si. Abstraindo o processo em algumas etapas que sera personalizado com base no que for implementado na aplicação.
+
+COMANDOS UTILIZADOS:
+$ npm install --save @nestjs/passport passport passport-local
+$ npm install --save-dev @types/passport-local
+
+----------------------
+
+GUIA EXPENSES-ONFLY
+
+- Criar um Role > ADMIN ou BASIC
+
+- Fazer o cadastro no User
+
+- Mapear a role_id e user_id na entidade de ligação UserRole 
+
+Logar na aplicação 
+Recebendo um Token_acess para consumir as demais rotas
+
+Demais rotas utilizadas 
+
+Expenses
+-- Quando for cadastrar um expense, deve acessar a rota Create passando o userId e categoryId
+
+-- Somente usuário ADMIN tem acesso as rotas privadas como Category
+
