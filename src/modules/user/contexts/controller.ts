@@ -63,8 +63,8 @@ export class UserController {
       transform: true,
     }),
   )
-  async update(@Body() userId: string, updateUserBodyDTO: UpdateUserBodyDTO) {
-    await this.userService.update(userId, updateUserBodyDTO);
+  async update(@Body() updateUserBodyDTO: UpdateUserBodyDTO) {
+    await this.userService.update( updateUserBodyDTO);
   }
 
   @Delete(':id')

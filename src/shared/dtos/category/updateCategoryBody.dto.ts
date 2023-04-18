@@ -1,15 +1,21 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsOptional, IsString, Max } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, IsUUID, MaxLength } from "class-validator";
 
 export class UpdateCategoryBodyDTO {
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsUUID(4)
+  id: string;
+  
   @ApiProperty()
   @IsString()
   @IsOptional()
-  name: string;
+  name?: string;
 
   @ApiProperty()
   @IsString()
-  @Max(191)
+  @MaxLength(191)
   @IsOptional()
-  description: string;
+  description?: string;
 }

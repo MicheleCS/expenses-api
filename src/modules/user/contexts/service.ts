@@ -37,13 +37,13 @@ export class UserService {
     return await this.userRepository.getOneUser(id);
   }
 
-  async update( userId: string, dto: UpdateUserBodyDTO): Promise<void> {
-    const findedUser = await this.userRepository.getOneUser(userId)
+  async update( dto: UpdateUserBodyDTO): Promise<void> {
+    const findedUser = await this.userRepository.getOneUser(dto.id)
     if(!findedUser) {
-      throw new EntityNotFoundError(User, userId)
+      throw new EntityNotFoundError(User, dto.id)
     }
 
-    await this.userRepository.updateUser(userId, {
+    await this.userRepository.updateUser(dto.id, {
       ...dto,
     })
   }

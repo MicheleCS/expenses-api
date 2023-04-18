@@ -52,8 +52,8 @@ export class CategoryController {
       transform: true,
     }),
   )
-  async update(@Body() categoryId: string, updateCategoryBodyDTO: UpdateCategoryBodyDTO) {
-    await this.categoryService.update(categoryId, updateCategoryBodyDTO);
+  async update(@Body() updateCategoryBodyDTO: UpdateCategoryBodyDTO) {
+    await this.categoryService.update( updateCategoryBodyDTO);
   }
 
   @ApiBearerAuth()

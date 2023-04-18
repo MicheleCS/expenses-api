@@ -43,7 +43,15 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# install localstack container
+$ docker-compose up -d
 ```
+- Back to the root dir of service, then run the docker container which will serve the app.
+
+```bash
+# install and run docker development environment
+$ make
 
 ## Test
 
