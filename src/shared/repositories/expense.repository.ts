@@ -2,7 +2,6 @@ import { EntityRepository, Repository, getRepository } from "typeorm";
 import { Expense } from "../database/entities/expense.entity";
 import { CreateExpenseDTO } from "../dtos/expense/createExpense.dto";
 import { UpdateExpenseDTO } from "../dtos/expense/updateExpense.dto";
-import { GetAllExpenseBodyDTO } from "../dtos/expense/gettAllExpenseBody.dto";
 
 @EntityRepository(Expense)
 export class ExpenseRepository extends Repository<Expense> {
@@ -18,7 +17,7 @@ export class ExpenseRepository extends Repository<Expense> {
     return this.save(expense)
   }
 
-  async getAllExpense(dto: GetAllExpenseBodyDTO): Promise<Expense[]> {
+  async getAllExpense(): Promise<Expense[] | undefined> {
     return this.find();
   }
 

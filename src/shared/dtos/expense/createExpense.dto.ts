@@ -9,4 +9,7 @@ export class CreateExpenseDTO {
 
   public description: string;
 
+  public   userId: string;
+
+  public   categoryId: string;
 }
