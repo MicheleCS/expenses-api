@@ -22,13 +22,13 @@ export class CategoryService {
     return await this.repository.getOneCategory(id);
   }
 
-  async update( categoryId: string, dto: UpdateCategoryBodyDTO): Promise<void> {
-    const findedCategory = await this.repository.getOneCategory(categoryId)
+  async update( dto: UpdateCategoryBodyDTO): Promise<void> {
+    const findedCategory = await this.repository.getOneCategory(dto.id)
     if(!findedCategory) {
-      throw new EntityNotFoundError(Category, categoryId)
+      throw new EntityNotFoundError(Category, dto.id)
     }
 
-    await this.repository.updateCategory(categoryId, {
+    await this.repository.updateCategory(dto.id, {
       ...dto,
     })
   }

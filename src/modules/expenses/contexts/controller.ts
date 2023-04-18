@@ -53,8 +53,8 @@ export class ExpenseController {
       transform: true,
     }),
   )
-  async update(@Body() expenseId: string, updateExpenseBodyDTO: UpdateExpenseBodyDTO) {
-    await this.expenseService.update(expenseId, updateExpenseBodyDTO);
+  async update(@Body()  updateExpenseBodyDTO: UpdateExpenseBodyDTO) {
+    await this.expenseService.update( updateExpenseBodyDTO);
   }
 
   @ApiBearerAuth()
